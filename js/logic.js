@@ -46,10 +46,12 @@ function getData(userInput, numberOfRecords, startYear, endYear) {
 function displayData(articleSet){
     for(let i = 0; i < articleSet.length; i++){
         let currentArticle = articleSet[i];
-        let byline = currentArticle.byline["original"];
-        if(byline===null){
+        let byline;
+        if(currentArticle.byline === null){
             byline = "";
+        } else {
+            byline = currentArticle.byline.original;
         }
-        $(".articleDisplay").append(($("<div>").text(currentArticle.headline.main)), ($("<div>").text(currentArticle.byline["original"])), ($("<div>").text(currentArticle.web_url)), ($("<div>").text(currentArticle.pub_date)));
+        $(".articleDisplay").append(($("<div>").text(currentArticle.headline.main)), ($("<div>").text(byline)), ($("<div>").text(currentArticle.web_url)), ($("<div>").text(currentArticle.pub_date)));
     }
 }
